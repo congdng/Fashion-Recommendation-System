@@ -1,0 +1,8 @@
+train: C:/Users/ADMIN/Desktop/Project/yolotraindataset
+val: C:/Users/ADMIN/Desktop/Project/yolovaliddataset
+
+# number of classes
+nc: 5
+
+# class names
+names: ['shirt', 'outwear', 'short', 'skirt', 'dress']
