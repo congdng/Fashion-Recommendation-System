@@ -65,7 +65,7 @@ Here is a scikit-learn library, k-nearest neighbors algorithm is a classifier im
 
 ![](https://miro.medium.com/max/591/0*rANGSUaZLeVKnHDk.png)
 
-## Yolov5
+## YOLOV5
 
 YOLOV5 is the latest Object Detection model in the YOLO family of models with the same accuracy as YOLOV4 but faster prediction speed.
 YOLOV5 is trained on Pytorch instead of DarkNet like previous generations. This is a big plus for YOLOv5 because PyTorch is much more popular.
