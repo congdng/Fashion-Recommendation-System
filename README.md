@@ -99,8 +99,26 @@ pip install -r requirements.txt
 ~~~
   
 ## Usage
+Follow these below step:
+- Download the DeepLearning2 Dataset. After downloading the dataset, three folders including train, validation and test are formed. Each folder has two another smaller folders: annos containing seperated json file for each image; image.
+- Run the json_combine.py to combine all the json file of the trainset and valid set.
+- Run the category_change.py. Since the initial dataset has 13 categories, we need to narrow down to 5 categories.
+  + short sleeve top, long sleeve top, vest, sling: shirt.
+  + short sleeve outwear, long sleeve outwear: outwear.
+  + shorts, trousers: short.
+  + skirt. 
+  + short sleeve dress, long sleeve dress, vest dress, sling dress: dress.
+- Run cut_image.py to extract the clothing pieces from the dataset's image and store it to a file for training later.
+- Run mobinet_model.py to set up the CNN pre-trained model, Mobilenetv3 and train it on our dataset. Currently, my model achieves 74.2% in accuracy. In this file, we can also plot the diagram which shows the accuracy and loss's movement through epochs.
+- If the model's accuracy is not high enough to satisfy our demand, run the model_evaluation.py to keep training the model.
+- Since YOLOV5 need specified format of file, run the yolo_train_dataset.py and yolo_valid_dataset.py to set up label.txt for each image. The format of this file can be seen as below.
 
-To run the web server, enter below:
+![](https://i.imgur.com/1wafJgv.png)
+
+- Run crawl_data.py to crawl the data from some website on the Internet. Currently, I crawl from amazon.com and darveys.com. 
+- Run get_image_numarray.py. This file let the trained Mobilenetv3 model run on the crawl dataset and extract a vector array with size (1,2048) for each image. The result then is stored to a json file.
+- Run knnfile.py to apply k-Nearest Neighbors algorithm on the crawl dataset. After running this, a file containing knn infomation is created in each category file.
+- Finally, run the web server, enter below:
 
 ```bash
 streamlit run main.py
