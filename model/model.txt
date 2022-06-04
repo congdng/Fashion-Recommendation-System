@@ -1,0 +1,3 @@
+Link for my model:
+https://drive.google.com/drive/folders/1lKc-5cETpbaKdtg_DSy65Kx4ido4YzMm?usp=sharing
+The 'bestmodel.h5' has the accuracy of 74.2%
