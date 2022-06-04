@@ -1,0 +1,6 @@
+# Fashion-Recommendation-System
+## Introduction
+People's living conditions are now gradually improving. Thus, people start paying attention to fashion. Fashion can be seen as an aesthetic symbol of each person. People often tend to be attracted to beauty, by what attracts their eyes the most. The fashion industry has always been and will continue to evolve. Even during the recent pandemic, the fashion industry seemed to be hit hard when people were no longer able to go out. However, reality proves the opposite. Comfortable models, suitable for working, studying and practicing at home become unsurpassed.
+The development of the fashion industry has pulled many trading floors, online clothing selling pages to form and appear more. Time by time, people are suffocated with the number of clothes choices and find difficulties on determining the right clothes for themselves.
+Hence, this project is created. This is a system that recommends clothes based on the input of images provided by the user themself. Those images may be something that the person sees often or just glances at, but the image has attracted a certain amount of interest and that person wants to search for similar products.
+The project uses neural networks to process the images from DeepFashion Dataset and k-NN to generate the final recommendations.
