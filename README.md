@@ -136,3 +136,7 @@ streamlit run main.py
 In this project, we have completed a simple and effective recommendation system that has real and direct links to e-commerce websites that deal in fashion products.
 The system wants to find the corresponding recommendations to go through stages. The first is training a CNN pre-trained model which is Mobilenetv3 to an accuracy of 74.2%. This is definitely something to improve on in the future. A vector array (1, 2048) is extracted for classification through the knn algorithm combined with extracting inputed images from the results of the YOLOV5 model.
 This project is still in development. Expand more categories such as western shoes, sneakers, accessories, jewelry, etc. Format and perform current functions even when the user uses his real image through the webcam. Add other fashion styles by crawling more information from many websites from different countries.
+
+## Credit
+
+This "Fashion Recommendation System" project is not only the result of my own constant efforts, but also the support and encouragement of my instructor Huynh Nguyen Minh Thong. I would like to give special thanks to Mr.Huynh Nguyen Minh Thong - who helped me during my study - research for this project.
