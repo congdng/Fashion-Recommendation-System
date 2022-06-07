@@ -6,7 +6,7 @@ import pickle
 import numpy as np
 import json
 from keras.preprocessing import image
-from keras.applications.resnet import preprocess_input
+from keras.applications.mobilenet_v3 import preprocess_input
 import tensorflow as tf
 from keras.models import Model
 import streamlit as st
@@ -27,11 +27,12 @@ IMAGE_SIZE = (IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNELS = 3
 
 #Run by streamlit run main.py
-
+record =[]
 def get_embedding(model, imagename):
     img = image.load_img(imagename, target_size=(IMAGE_WIDTH, IMAGE_HEIGHT))
     x   = image.img_to_array(img)
     x   = np.expand_dims(x, axis=0)
+    x   = preprocess_input(x)
     return model.predict(x).reshape(-1)
 
 def save_file(uploaded_file):
@@ -41,21 +42,23 @@ def save_file(uploaded_file):
             return 1
     except:
         return 0
-data = []
-with open('crawlfile.json', 'r') as f:
-    temp = json.loads(f.read())
-    for i in range(len(temp)):
-        url = str(temp[i]['URL'])
-        name = str(temp[i]['Name'])
-        price = str(temp[i]['Price'])
-        record = {
-                'Name': name,
-                'URL': url,
-                'Price': price,
-            }
-        data.append(record)
 
-restored_model = tf.keras.models.load_model('bestmodel.h5')
+def readfile(PATH):
+    with open(PATH, 'r') as f:
+        temp = json.loads(f.read())
+        name = temp['Name']
+        cate = temp['Category']
+        url = temp['URL']
+        price = temp['Price']
+        record = {
+            'Name': name,
+            'URL': url,
+            'Price': price,
+            'Category': cate
+        }
+    return record
+
+restored_model = tf.keras.models.load_model('bestmodel3.h5')
 secondmodel = Model(inputs = restored_model.input,
                                  outputs= restored_model.layers[266].output)
 #print(secondmodel.summary())
@@ -105,36 +108,43 @@ if uploaded_file is not None:
             distance, indices = loaded_model.kneighbors([imagearray])
             print(indices)
             for j in range(4):
-                print('crawldata/' + results[option - 1]['name'] + '/' + str(thislist[indices[0][j]][0:6]))
+                print('crawldata/' + results[option - 1]['name'] + '/' + str(thislist[indices[0][j]*2]))
             col1, col2, col3, col4 = st.columns(4)
             with col1:
-                st.image('crawldata/' + results[option - 1]['name'] + '/' + thislist[indices[0][0]])
-                st.write(data[int(thislist[indices[0][0]][0:6])]['Name'])
-                st.write(data[int(thislist[indices[0][0]][0:6])]['Price'])
-                link = data[int(thislist[indices[0][0]][0:6])]['URL']
+                st.image('crawldata/' + results[option - 1]['name'] + '/' + thislist[indices[0][0]*2])
+                PATH = 'crawldata/'+ results[option - 1]['name'] + '/' + thislist[indices[0][0]*2 + 1]
+                record = readfile(PATH)
+                st.write(record['Name'])
+                st.write(record['Price'])
+                link = record['URL']
                 link = '[Click here](' + link +  ')'
                 st.markdown(link, unsafe_allow_html=True)
             with col2:
-                st.image('crawldata/' + results[option - 1]['name'] + '/' + thislist[indices[0][1]])
-                st.write(data[int(thislist[indices[0][1]][0:6])]['Name'])
-                st.write(data[int(thislist[indices[0][1]][0:6])]['Price'])
-                link = data[int(thislist[indices[0][1]][0:6])]['URL']
+                st.image('crawldata/' + results[option - 1]['name'] + '/' + thislist[indices[0][1]*2])
+                PATH = 'crawldata/'+ results[option - 1]['name'] + '/' + thislist[indices[0][1]*2 + 1]
+                record = readfile(PATH)
+                st.write(record['Name'])
+                st.write(record['Price'])
+                link = record['URL']
                 link = '[Click here](' + link +  ')'
                 st.markdown(link, unsafe_allow_html=True)
             with col3:
-                st.image('crawldata/' + results[option - 1]['name'] + '/' + thislist[indices[0][2]])
-                st.write(data[int(thislist[indices[0][2]][0:6])]['Name'])
-                st.write(data[int(thislist[indices[0][2]][0:6])]['Price'])
-                link = data[int(thislist[indices[0][2]][0:6])]['URL']
+                st.image('crawldata/' + results[option - 1]['name'] + '/' + thislist[indices[0][2]*2])
+                PATH = 'crawldata/'+ results[option - 1]['name'] + '/' + thislist[indices[0][2]*2 + 1]
+                record = readfile(PATH)
+                st.write(record['Name'])
+                st.write(record['Price'])
+                link = record['URL']
                 link = '[Click here](' + link +  ')'
                 st.markdown(link, unsafe_allow_html=True)
             with col4:
-                st.image('crawldata/' + results[option - 1]['name'] + '/' + thislist[indices[0][3]])
-                st.write(data[int(thislist[indices[0][3]][0:6])]['Name'])
-                st.write(data[int(thislist[indices[0][3]][0:6])]['Price'])
-                link = data[int(thislist[indices[0][3]][0:6])]['URL']
+                st.image('crawldata/' + results[option - 1]['name'] + '/' + thislist[indices[0][3]*2])
+                PATH = 'crawldata/'+ results[option - 1]['name'] + '/' + thislist[indices[0][3]*2 + 1]
+                record = readfile(PATH)
+                st.write(record['Name'])
+                st.write(record['Price'])
+                link = record['URL']
                 link = '[Click here](' + link +  ')'
                 st.markdown(link, unsafe_allow_html=True)
-#cv2.imshow('img', image)
-#cv2.waitKey(0)
+
 
