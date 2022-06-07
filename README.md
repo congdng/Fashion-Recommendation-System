@@ -115,7 +115,8 @@ Follow these below step:
 
 ![](https://i.imgur.com/1wafJgv.png)
 
-- Run crawl_data.py to crawl the data from some website on the Internet. Currently, I crawl from amazon.com and darveys.com. 
+- Run crawl_data.py to crawl the data from some website on the Internet. Currently, I crawl from amazon.com and darveys.com.
+- Run download_image.py 
 - Run get_image_numarray.py. This file let the trained Mobilenetv3 model run on the crawl dataset and extract a vector array with size (1,2048) for each image. The result then is stored to a json file.
 - Run knnfile.py to apply k-Nearest Neighbors algorithm on the crawl dataset. After running this, a file containing knn infomation is created in each category file.
 - Run crawl_seperate.py to make seperate JSON file for each image. This helps speed up the performance of the website.
